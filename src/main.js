@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
    Smooth scroll (Lenis) wired to ScrollTrigger + GSAP ticker
    ------------------------------------------------------------------ */
 const lenis = new Lenis({
-  duration: 1.1,
+  duration: 1.05,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   smoothWheel: true,
 });
@@ -28,19 +28,10 @@ ScrollTrigger.create({
 });
 
 /* ------------------------------------------------------------------
-   Nav: solid background + hide-on-scroll-down
+   Nav: hide-on-scroll-down + full menu toggle
    ------------------------------------------------------------------ */
 const nav = document.getElementById("siteNav");
-const heroEl = document.getElementById("hero");
 let lastY = window.scrollY;
-
-ScrollTrigger.create({
-  trigger: heroEl,
-  start: "bottom top+=120",
-  onEnter: () => nav.classList.add("is-solid"),
-  onLeaveBack: () => nav.classList.remove("is-solid"),
-});
-
 ScrollTrigger.create({
   start: 80,
   onUpdate: (self) => {
@@ -51,110 +42,52 @@ ScrollTrigger.create({
   },
 });
 
-const navBurger = document.getElementById("navBurger");
-const mobileMenu = document.getElementById("mobileMenu");
-navBurger.addEventListener("click", () => {
-  mobileMenu.classList.toggle("is-open");
+const menuBtn = document.getElementById("menuBtn");
+const fullMenu = document.getElementById("fullMenu");
+menuBtn.addEventListener("click", () => {
+  menuBtn.classList.toggle("is-open");
+  fullMenu.classList.toggle("is-open");
 });
-mobileMenu.querySelectorAll("a").forEach((a) =>
-  a.addEventListener("click", () => mobileMenu.classList.remove("is-open"))
-);
+fullMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+  menuBtn.classList.remove("is-open");
+  fullMenu.classList.remove("is-open");
+}));
 
 /* ------------------------------------------------------------------
-   Hero intro timeline
+   Hero — gentle parallax + fade (no pin, matches reference restraint)
    ------------------------------------------------------------------ */
-const heroTl = gsap.timeline({ delay: 0.2 });
-heroTl
-  .to(".hero__headline .line-inner", {
-    y: "0%",
-    duration: 1.1,
-    ease: "expo.out",
-    stagger: 0.12,
-  })
-  .to("[data-delay]", {
-    opacity: 1,
-    y: 0,
-    duration: 0.9,
-    ease: "power3.out",
-    stagger: 0.12,
-  }, "-=0.7");
-
-gsap.set("[data-delay]", { y: 16 });
-
-// hero parallax + fade on scroll out
-gsap.to("#heroBg img", {
-  yPercent: 14,
+gsap.to("#heroImg", {
+  yPercent: 10,
   ease: "none",
-  scrollTrigger: { trigger: heroEl, start: "top top", end: "bottom top", scrub: true },
+  scrollTrigger: { trigger: ".hero__band", start: "top top", end: "bottom top", scrub: true },
 });
-gsap.to(".hero__content, .hero__scroll", {
-  opacity: 0,
-  y: -40,
-  ease: "none",
-  scrollTrigger: { trigger: heroEl, start: "20% top", end: "bottom top", scrub: true },
-});
+gsap.from("#heroStatement", { opacity: 0, y: 24, duration: 1, ease: "power3.out", delay: .15 });
+gsap.from(".hero__scroll-cue, .hero__meta", { opacity: 0, y: 16, duration: .9, ease: "power3.out", stagger: .1, delay: .5 });
 
 /* ------------------------------------------------------------------
-   Generic reveal-up (non-hero) elements
+   Generic reveal-up
    ------------------------------------------------------------------ */
-gsap.utils.toArray(".pull-quote, .ecosystem__text > *, .people__copy > *, .network > *").forEach((el) => {
-  gsap.fromTo(el, { opacity: 0, y: 28 }, {
-    opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+gsap.utils.toArray(".section-head, .eco-card, .numbers__cell, .people__circle, .people__pill, .people h2, .people p").forEach((el) => {
+  gsap.fromTo(el, { opacity: 0, y: 26 }, {
+    opacity: 1, y: 0, duration: .8, ease: "power3.out",
     scrollTrigger: { trigger: el, start: "top 88%" },
   });
 });
-
-/* ------------------------------------------------------------------
-   Values ticker — continuous marquee
-   ------------------------------------------------------------------ */
-function loopMarquee(selector, duration, direction = -1) {
-  const track = document.querySelector(selector);
-  if (!track) return;
-  const width = track.scrollWidth / 2;
-  gsap.fromTo(track, { x: direction < 0 ? 0 : -width }, {
-    x: direction < 0 ? -width : 0,
-    duration, ease: "none", repeat: -1,
+gsap.utils.toArray(".vtile").forEach((el, i) => {
+  gsap.fromTo(el, { opacity: 0, y: 22 }, {
+    opacity: 1, y: 0, duration: .6, ease: "power2.out", delay: (i % 4) * 0.05,
+    scrollTrigger: { trigger: el, start: "top 92%" },
   });
-}
-loopMarquee("#tickerTrack", 22, -1);
-document.querySelectorAll(".ventures__row--a .ventures__track").forEach((t) => {
-  gsap.fromTo(t, { x: 0 }, { x: -t.scrollWidth / 2, duration: 42, ease: "none", repeat: -1 });
 });
-document.querySelectorAll(".ventures__row--b .ventures__track").forEach((t) => {
-  gsap.fromTo(t, { x: -t.scrollWidth / 2 }, { x: 0, duration: 46, ease: "none", repeat: -1 });
-});
-
-/* ------------------------------------------------------------------
-   Idea section — scroll-scrubbed word reveal
-   ------------------------------------------------------------------ */
-const scrubEl = document.getElementById("scrubText");
-if (scrubEl) {
-  const words = scrubEl.textContent.trim().split(/\s+/);
-  scrubEl.innerHTML = words.map((w) => `<span class="word">${w}</span>`).join(" ");
-  const wordEls = scrubEl.querySelectorAll(".word");
-
-  ScrollTrigger.create({
-    trigger: scrubEl,
-    start: "top 75%",
-    end: "bottom 40%",
-    scrub: true,
-    onUpdate: (self) => {
-      const litCount = Math.floor(self.progress * wordEls.length);
-      wordEls.forEach((w, i) => w.classList.toggle("is-lit", i < litCount));
-    },
-  });
-}
 
 /* ------------------------------------------------------------------
    Ecosystem — build + animate radial diagram
    ------------------------------------------------------------------ */
 const NODES = ["People", "Cooperatives", "Enterprise", "Finance", "Technology", "Knowledge", "Networks", "Policy", "Environment"];
-const legendEl = document.getElementById("ecosystemLegend");
+const NODE_COLORS = ["#ac031e", "#a9702f", "#1c2b3a", "#244a37"];
 const diagramEl = document.getElementById("ecosystemDiagram");
 
-if (legendEl && diagramEl) {
-  legendEl.innerHTML = NODES.map((n) => `<li>${n}</li>`).join("");
-
+if (diagramEl) {
   const size = 560;
   const cx = size / 2, cy = size / 2, radius = size * 0.36, nodeR = 8;
   const ns = "http://www.w3.org/2000/svg";
@@ -166,9 +99,9 @@ if (legendEl && diagramEl) {
 
   const centerCircle = document.createElementNS(ns, "circle");
   centerCircle.setAttribute("cx", cx); centerCircle.setAttribute("cy", cy);
-  centerCircle.setAttribute("r", size * 0.1); centerCircle.setAttribute("class", "eco-center-circle");
+  centerCircle.setAttribute("r", size * 0.095); centerCircle.setAttribute("class", "eco-center-circle");
   const centerLabel = document.createElementNS(ns, "text");
-  centerLabel.setAttribute("x", cx); centerLabel.setAttribute("y", cy + 7);
+  centerLabel.setAttribute("x", cx); centerLabel.setAttribute("y", cy + 5);
   centerLabel.setAttribute("text-anchor", "middle"); centerLabel.setAttribute("class", "eco-center-label");
   centerLabel.textContent = "TUI";
 
@@ -189,7 +122,7 @@ if (legendEl && diagramEl) {
 
     const node = document.createElementNS(ns, "circle");
     node.setAttribute("cx", x); node.setAttribute("cy", y);
-    node.setAttribute("r", nodeR); node.setAttribute("class", "eco-node-circle");
+    node.setAttribute("r", nodeR); node.setAttribute("fill", NODE_COLORS[i % NODE_COLORS.length]);
     nodeGroup.appendChild(node);
 
     const label_ = document.createElementNS(ns, "text");
@@ -214,85 +147,40 @@ if (legendEl && diagramEl) {
   gsap.set(nodeEls, { opacity: 0, scale: 0, transformOrigin: "center" });
   gsap.set([centerCircle, centerLabel], { opacity: 0, scale: 0.7, transformOrigin: "center" });
 
-  const ecoTl = gsap.timeline({
-    scrollTrigger: { trigger: diagramEl, start: "top 75%" },
-  });
-  ecoTl
+  gsap.timeline({ scrollTrigger: { trigger: diagramEl, start: "top 75%" } })
     .to([centerCircle, centerLabel], { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.8)" })
     .to(lineEls, { scaleX: 1, duration: 0.6, ease: "power2.out", stagger: 0.06 }, "-=0.2")
-    .to(nodeEls, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.05 }, "-=0.5")
-    .to("#ecosystemLegend li", { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: "power2.out" }, "-=0.6");
+    .to(nodeEls, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.05 }, "-=0.5");
 }
 
 /* ------------------------------------------------------------------
-   Four Core Areas — pinned horizontal scroll (desktop only)
+   What We Do — sticky list drives crossfading visual panel
    ------------------------------------------------------------------ */
-const workTrack = document.getElementById("workTrack");
-const workPin = document.getElementById("workPin");
+const wwdItems = gsap.utils.toArray(".wwd__item");
+const wwdPanels = gsap.utils.toArray(".wwd__panel");
 
-const mm = gsap.matchMedia();
-
-mm.add("(min-width: 981px)", () => {
-  const getScrollAmount = () => workTrack.scrollWidth - window.innerWidth + 80;
-
-  const tween = gsap.to(workTrack, {
-    x: () => -getScrollAmount(),
-    ease: "none",
-    scrollTrigger: {
-      trigger: workPin,
-      start: "top top",
-      end: () => `+=${getScrollAmount()}`,
-      scrub: 1,
-      pin: true,
-      invalidateOnRefresh: true,
+wwdItems.forEach((item, i) => {
+  ScrollTrigger.create({
+    trigger: item,
+    start: "top center",
+    end: "bottom center",
+    onToggle: (self) => {
+      if (!self.isActive) return;
+      wwdItems.forEach((el, j) => el.classList.toggle("is-active", j === i));
+      wwdPanels.forEach((el, j) => el.classList.toggle("is-active", j === i));
     },
   });
-
-  gsap.utils.toArray("[data-panel]").forEach((panel) => {
-    gsap.fromTo(panel, { opacity: 0.35, y: 30 }, {
-      opacity: 1, y: 0, ease: "power2.out",
-      scrollTrigger: {
-        trigger: panel,
-        containerAnimation: tween.scrollTrigger.animation,
-        start: "left 85%",
-        end: "left 55%",
-        scrub: true,
-      },
-    });
-  });
-
-  return () => tween.scrollTrigger && tween.scrollTrigger.kill();
 });
 
 /* ------------------------------------------------------------------
-   People — clip-path image reveal
+   Who We Work With — accordion
    ------------------------------------------------------------------ */
-const peopleClip = document.querySelector(".people__clip");
-if (peopleClip) {
-  gsap.fromTo(peopleClip, { clipPath: "inset(0 0 0 100%)" }, {
-    clipPath: "inset(0 0 0 0%)",
-    duration: 1.3,
-    ease: "power4.out",
-    scrollTrigger: { trigger: peopleClip, start: "top 80%" },
-  });
-}
-
-/* ------------------------------------------------------------------
-   Network grid — staggered reveal
-   ------------------------------------------------------------------ */
-gsap.set(".network__grid li", { opacity: 0, y: 20 });
-gsap.to(".network__grid li", {
-  opacity: 1, y: 0, duration: 0.7, stagger: 0.06, ease: "power2.out",
-  scrollTrigger: { trigger: ".network__grid", start: "top 85%" },
-});
-
-/* ------------------------------------------------------------------
-   Closing section reveal
-   ------------------------------------------------------------------ */
-gsap.utils.toArray(".closing > *:not(.closing__bg)").forEach((el, i) => {
-  gsap.fromTo(el, { opacity: 0, y: 24 }, {
-    opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: i * 0.05,
-    scrollTrigger: { trigger: ".closing", start: "top 70%" },
+document.querySelectorAll(".acc-group__head").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const group = btn.closest(".acc-group");
+    const wasOpen = group.classList.contains("is-open");
+    document.querySelectorAll(".acc-group").forEach((g) => g.classList.remove("is-open"));
+    if (!wasOpen) group.classList.add("is-open");
   });
 });
 
@@ -304,7 +192,7 @@ document.querySelectorAll(".magnetic").forEach((el) => {
     const r = el.getBoundingClientRect();
     const x = e.clientX - r.left - r.width / 2;
     const y = e.clientY - r.top - r.height / 2;
-    gsap.to(el, { x: x * 0.35, y: y * 0.5, duration: 0.4, ease: "power3.out" });
+    gsap.to(el, { x: x * 0.03, y: y * 0.06, duration: 0.4, ease: "power3.out" });
   });
   el.addEventListener("mouseleave", () => {
     gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });

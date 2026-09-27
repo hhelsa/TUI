@@ -8,7 +8,7 @@
   <link rel="icon" href="/src/assets/images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="grain-overlay" aria-hidden="true"></div>
@@ -16,298 +16,298 @@
 
   <header class="site-nav" id="siteNav">
     <a href="#top" class="nav-mark">
-      <span class="nav-mark__chip"><img src="/src/assets/images/logo.png" alt="TUI — The Uhuru Institute for Social Development" /></span>
+      <img src="/src/assets/images/logo.png" alt="TUI logo" />
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#ecosystem"><span>Ecosystem</span></a>
-      <a href="#work"><span>Our Work</span></a>
-      <a href="#thinktank"><span>Think Tank</span></a>
-      <a href="#people"><span>People</span></a>
-    </nav>
-    <a href="#engage" class="nav-cta magnetic"><span>Partner with us</span></a>
-    <button class="nav-burger" id="navBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <button class="nav-menu-btn" id="menuBtn">
+      <span>Menu</span>
+      <span class="burger"><span></span><span></span><span></span></span>
+    </button>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#ecosystem">Ecosystem</a>
-    <a href="#work">Our Work</a>
-    <a href="#thinktank">Think Tank</a>
-    <a href="#people">People</a>
-    <a href="#engage">Partner with us</a>
-  </div>
+  <nav class="full-menu" id="fullMenu">
+    <div class="full-menu__links">
+      <a href="#work"><span>What We Do</span><span class="n">01</span></a>
+      <a href="#ecosystem"><span>Ecosystem</span><span class="n">02</span></a>
+      <a href="#ventures"><span>Ventures</span><span class="n">03</span></a>
+      <a href="#network"><span>Who We Work With</span><span class="n">04</span></a>
+      <a href="#people"><span>People</span><span class="n">05</span></a>
+      <a href="#engage"><span>Partner With Us</span><span class="n">06</span></a>
+    </div>
+    <div class="full-menu__foot">
+      <span>Uganda</span>
+      <span>Founded 2011</span>
+      <span>Registered 2013</span>
+    </div>
+  </nav>
 
   <main id="top">
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
-      <div class="hero__bg" id="heroBg">
-        <img src="/src/assets/images/hero-duotone.jpg" alt="TUI community gathering" />
-        <div class="hero__scrim"></div>
+      <div class="hero__band">
+        <img src="/src/assets/images/hero-warm.jpg" alt="TUI community gathering, Uganda" id="heroImg" />
       </div>
-
-      <div class="hero__content">
-        <p class="eyebrow reveal-up" data-delay="0">The Uhuru Institute for Social Development</p>
-        <h1 class="hero__headline">
-          <span class="line" data-line><span class="line-inner">The most trusted partner</span></span>
-          <span class="line" data-line><span class="line-inner">inspiring <em>transformative</em></span></span>
-          <span class="line" data-line><span class="line-inner">wealth creation in Africa.</span></span>
-        </h1>
-        <p class="hero__sub reveal-up" data-delay="0.55">
-          Accelerating inclusive, locally led socio-economic development by advancing the cooperative business model.
+      <div class="hero__body section-frame">
+        <p class="hero__statement" id="heroStatement">
+          The most trusted partner inspiring transformative wealth creation in Africa —
+          by accelerating inclusive, locally led socio-economic development through the
+          cooperative business model.
         </p>
-        <div class="hero__meta reveal-up" data-delay="0.75">
-          <span>Founded 2011</span>
-          <i></i>
-          <span>Registered 2013</span>
-          <i></i>
-          <span>Uganda</span>
+        <div class="hero__scroll-cue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+          Scroll to explore
+        </div>
+        <div class="hero__meta">
+          <div><b>2011</b><span>Founded</span></div>
+          <div><b>2013</b><span>Registered as a company limited by guarantee</span></div>
+          <div><b>Uganda</b><span>Where we work</span></div>
         </div>
       </div>
-
-      <div class="hero__scroll reveal-up" data-delay="1">
-        <span class="hero__scroll-line"><i></i></span>
-        <span>Scroll</span>
-      </div>
     </section>
 
-    <!-- ============ VALUES TICKER ============ -->
-    <section class="ticker" aria-label="Our values">
-      <div class="ticker__track" id="tickerTrack">
-        <span>Resolve</span><i>&#10022;</i>
-        <span>Trust</span><i>&#10022;</i>
-        <span>Diligence</span><i>&#10022;</i>
-        <span>Accountability</span><i>&#10022;</i>
-        <span>Innovativeness</span><i>&#10022;</i>
-        <span>Resolve</span><i>&#10022;</i>
-        <span>Trust</span><i>&#10022;</i>
-        <span>Diligence</span><i>&#10022;</i>
-        <span>Accountability</span><i>&#10022;</i>
-        <span>Innovativeness</span><i>&#10022;</i>
-      </div>
-    </section>
-
-    <!-- ============ THE IDEA ============ -->
-    <section class="idea" id="idea">
+    <!-- ============ WHAT WE DO ============ -->
+    <section class="wwd section" id="work">
       <div class="section-frame">
-        <p class="eyebrow eyebrow--dark">The Idea</p>
-        <p class="scrub-text" id="scrubText">
-          Inclusive growth does not happen by accident — it is organised. TUI places citizens at the centre of an accountable, cooperative economy, connecting collective effort to enterprise, opportunity and shared prosperity.
-        </p>
-      </div>
-      <div class="idea__quote-frame">
-        <blockquote class="pull-quote">
-          <span>&ldquo;An enterprising, prosperous, peaceful &amp; happy society.&rdquo;</span>
-          <cite>— TUI's aspiration</cite>
-        </blockquote>
+        <div class="section-head">
+          <div>
+            <p class="label"><i></i>How TUI Works</p>
+            <h2>What we do</h2>
+          </div>
+          <p class="body-md">Four connected ways TUI moves the cooperative economy — from capability, to capital, to the tools and ideas that keep it all running.</p>
+        </div>
+
+        <div class="wwd__grid">
+          <div class="wwd__list" id="wwdList">
+            <div class="wwd__item is-active" data-wwd="0">
+              <div class="wwd__item-top">
+                <span class="wwd__item-num">01</span>
+                <h3>Business Development</h3>
+              </div>
+              <p>Tailor-made cooperative training, organisational development, mentorship and coaching — delivered through SkillCoop and #NoExcuses, reinforced by business networking.</p>
+              <div class="wwd__item-tags"><span>SkillCoop</span><span>#NoExcuses</span><span>Coaching &amp; Mentorship</span></div>
+            </div>
+            <div class="wwd__item" data-wwd="1">
+              <div class="wwd__item-top">
+                <span class="wwd__item-num">02</span>
+                <h3>Financing</h3>
+              </div>
+              <p>Through Fanaka Finance, TUI delivers credit, agency management, fund management and financial literacy to cooperative MSMEs — Piki Credit, Soko Credit, Kilimo Credit.</p>
+              <div class="wwd__item-tags"><span>Fanaka Finance</span><span>Piki Credit</span><span>Soko Credit</span><span>Kilimo Credit</span></div>
+            </div>
+            <div class="wwd__item" data-wwd="2">
+              <div class="wwd__item-top">
+                <span class="wwd__item-num">03</span>
+                <h3>ICT Solutions</h3>
+              </div>
+              <p>TUI builds and operates digital products that strengthen cooperative businesses — monitoring, ERP, and marketplace access.</p>
+              <div class="wwd__item-tags"><span>CoopProfiler</span><span>Splendor ERP</span><span>Sokoni Place</span></div>
+            </div>
+            <div class="wwd__item" data-wwd="3">
+              <div class="wwd__item-top">
+                <span class="wwd__item-num">04</span>
+                <h3>The Uhuru Think Tank</h3>
+              </div>
+              <p>Research, policy analysis and public dialogue on cooperative performance, resilience and governance — carried through The People's Space and theCooperator News.</p>
+              <div class="wwd__item-tags"><span>Research &amp; Policy</span><span>The People's Space</span><span>theCooperator News</span></div>
+            </div>
+          </div>
+
+          <div class="wwd__visual" id="wwdVisual">
+            <div class="wwd__panel is-active" data-panel="0">
+              <img src="/src/assets/images/assembly-warm.jpg" alt="Cooperative training and assembly" />
+              <div class="wwd__panel-scrim"></div>
+              <div class="wwd__panel-label"><b>Business Development</b><span>Training · Coaching · Networking</span></div>
+            </div>
+            <div class="wwd__panel" data-panel="1">
+              <img src="/src/assets/images/piki-warm.jpg" alt="Piki Credit boda-boda transport cooperative" />
+              <div class="wwd__panel-scrim"></div>
+              <div class="wwd__panel-label"><b>Financing</b><span>Fanaka Finance</span></div>
+            </div>
+            <div class="wwd__panel wwd__panel--tile" data-panel="2">
+              <svg class="wwd__panel-icon" viewBox="0 0 48 48" fill="none" stroke="#faf7f1" stroke-width="1.4"><circle cx="12" cy="12" r="6"/><circle cx="36" cy="12" r="6"/><circle cx="24" cy="36" r="6"/><path d="M17 15l14 18M31 15L17 33"/></svg>
+              <div class="wwd__panel-label"><b>ICT Solutions</b><span>CoopProfiler · Splendor ERP · Sokoni Place</span></div>
+            </div>
+            <div class="wwd__panel wwd__panel--tile forest" data-panel="3">
+              <svg class="wwd__panel-icon" viewBox="0 0 48 48" fill="none" stroke="#faf7f1" stroke-width="1.4"><path d="M10 38V14a4 4 0 014-4h10v28z"/><path d="M38 38V14a4 4 0 00-4-4H24v28z"/></svg>
+              <div class="wwd__panel-label"><b>Uhuru Think Tank</b><span>Research · Policy · Dialogue</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ============ ECOSYSTEM ============ -->
-    <section class="ecosystem" id="ecosystem">
-      <div class="ecosystem__text">
-        <p class="eyebrow eyebrow--dark">The Ecosystem</p>
-        <h2>Not one programme.<br />One connected system.</h2>
-        <p class="body-lg">
-          TUI connects cooperatives, youth and collective enterprises to the finance, technology, knowledge and
-          networks they need — so wealth creation is inclusive, and locally led.
-        </p>
-        <ul class="ecosystem__legend" id="ecosystemLegend"></ul>
+    <section class="ecosystem section" id="ecosystem">
+      <div class="section-frame ecosystem__grid">
+        <div>
+          <p class="label label--light"><i></i>The Ecosystem</p>
+          <h2>Not one programme.<br />One connected system.</h2>
+          <p class="body-md">TUI connects cooperatives, youth and collective enterprises to the finance, technology, knowledge and networks they need — so wealth creation is inclusive, and locally led.</p>
+        </div>
+        <div class="ecosystem__diagram" id="ecosystemDiagram" aria-hidden="true"></div>
       </div>
-      <div class="ecosystem__diagram" id="ecosystemDiagram" aria-hidden="true"></div>
+      <div class="eco-card">
+        <div class="eco-card__icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#faf7f1" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 2v12M2 8h12"/></svg>
+        </div>
+        <div><b>9 connected parts</b><span>One purpose, moving together</span></div>
+      </div>
     </section>
 
-    <!-- ============ FOUR CORE AREAS (horizontal pin) ============ -->
-    <section class="work" id="work">
-      <div class="work__pin" id="workPin">
-        <div class="work__intro">
-          <p class="eyebrow eyebrow--dark">What We Do</p>
-          <h2>Four ways TUI moves<br />the cooperative economy.</h2>
+    <!-- ============ VENTURES ============ -->
+    <section class="ventures section" id="ventures">
+      <div class="section-frame">
+        <div class="section-head">
+          <div>
+            <p class="label"><i></i>Ventures &amp; Platforms</p>
+            <h2>Ten ways the ecosystem shows up.</h2>
+          </div>
+          <p class="body-md">Each venture below is a working part of TUI's ecosystem — real platforms, brands and initiatives, not concepts.</p>
         </div>
-
-        <div class="work__track" id="workTrack">
-
-          <article class="panel" data-panel>
-            <div class="panel__media">
-              <img src="/src/assets/images/assembly-duotone.jpg" alt="TUI cooperative training and assembly" />
-            </div>
-            <div class="panel__copy">
-              <span class="panel__num">01</span>
-              <p class="panel__kicker">How we build capability</p>
-              <h3>Business Development</h3>
-              <p>Tailor-made cooperative training, organisational development, mentorship and coaching —
-                delivered through SkillCoop and #NoExcuses, reinforced by business networking that keeps
-                cooperatives connected.</p>
-              <ul class="panel__tags">
-                <li>SkillCoop</li><li>#NoExcuses</li><li>Coaching &amp; Mentorship</li><li>Business Networking</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="panel" data-panel>
-            <div class="panel__media">
-              <img src="/src/assets/images/piki-duotone.jpg" alt="Piki Credit boda-boda transport cooperative" />
-            </div>
-            <div class="panel__copy">
-              <span class="panel__num">02</span>
-              <p class="panel__kicker">How we fund opportunity</p>
-              <h3>Financing</h3>
-              <p>Through <strong>Fanaka Finance</strong>, TUI delivers credit, agency management, fund
-                management and financial literacy to cooperative MSMEs — Piki Credit for transport
-                cooperatives, Soko Credit for market traders, Kilimo Credit for agricultural marketing.</p>
-              <ul class="panel__tags">
-                <li>Fanaka Finance</li><li>Piki Credit</li><li>Soko Credit</li><li>Kilimo Credit</li>
-              </ul>
-              <p class="panel__footnote">Piki Credit was first piloted with the Kampala Civic Center Boda-Boda Transporters Cooperative Society.</p>
-            </div>
-          </article>
-
-          <article class="panel" data-panel>
-            <div class="panel__media panel__media--product">
-              <div class="product-mock" id="productMock">
-                <div class="product-mock__browser">
-                  <div class="product-mock__bar"><i></i><i></i><i></i></div>
-                  <div class="product-mock__body">
-                    <div class="pm-row"><span class="pm-bar w-70"></span></div>
-                    <div class="pm-row"><span class="pm-bar w-40"></span><span class="pm-bar w-30 accent"></span></div>
-                    <div class="pm-grid">
-                      <span class="pm-card"></span><span class="pm-card accent"></span><span class="pm-card"></span>
-                    </div>
-                  </div>
-                  <span class="product-mock__label">Splendor ERP</span>
-                </div>
-                <div class="product-mock__phone">
-                  <div class="pm-row"><span class="pm-bar w-60"></span></div>
-                  <div class="pm-stat">
-                    <span class="pm-stat__ring"></span>
-                  </div>
-                  <div class="pm-row"><span class="pm-bar w-80 accent"></span></div>
-                  <span class="product-mock__label">CoopProfiler</span>
-                </div>
-                <span class="product-mock__pill">Sokoni Place</span>
-              </div>
-            </div>
-            <div class="panel__copy">
-              <span class="panel__num">03</span>
-              <p class="panel__kicker">How we build the tools</p>
-              <h3>ICT Solutions</h3>
-              <p>TUI builds and operates digital products that strengthen cooperative businesses — from
-                monitoring and evaluation to enterprise resource planning and marketplace access.</p>
-              <ul class="panel__tags">
-                <li>CoopProfiler</li><li>Splendor ERP</li><li>Sokoni Place</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="panel" data-panel>
-            <div class="panel__media panel__media--mosaic">
-              <div class="mosaic" id="thinkMosaic">
-                <span class="m-xl">Cooperative Resilience</span>
-                <span class="m-md">Cooperative Identity</span>
-                <span class="m-sm">Cooperative Law</span>
-                <span class="m-md">Tax Policy</span>
-                <span class="m-lg">Gender &amp; Cooperatives</span>
-                <span class="m-sm">Youth</span>
-                <span class="m-md">Public Policy</span>
-                <span class="m-sm">Community Development</span>
-              </div>
-            </div>
-            <div class="panel__copy">
-              <span class="panel__num">04</span>
-              <p class="panel__kicker">How we shape the debate</p>
-              <h3>The Uhuru Think Tank</h3>
-              <p>Research, policy analysis and public dialogue on cooperative performance, resilience and
-                governance — carried into public conversation through The People's Space and
-                theCooperator News.</p>
-              <ul class="panel__tags">
-                <li>Research &amp; Policy</li><li>The People's Space</li><li>theCooperator News</li>
-              </ul>
-            </div>
-          </article>
-
+        <div class="ventures__grid">
+          <div class="vtile vtile--maroon vtile--wide">
+            <span class="vtile__chip"><img src="/src/assets/logos/coop360.png" alt="Coop360 Network" /></span>
+            <p class="vtile__desc">Networking and capacity-building platform connecting cooperatives to business opportunities, services and learning.</p>
+          </div>
+          <div class="vtile vtile--ochre">
+            <span class="vtile__chip"><img src="/src/assets/logos/skillcoop.png" alt="SkillCoop" /></span>
+            <p class="vtile__desc">Technical training, mentoring, coaching and learning visits for cooperative practitioners.</p>
+          </div>
+          <div class="vtile vtile--navy">
+            <span class="vtile__chip"><img src="/src/assets/logos/noexcuses.png" alt="#NoExcuses" /></span>
+            <p class="vtile__desc">Youth development enterprise — leadership and entrepreneurship through camps and caravans.</p>
+          </div>
+          <div class="vtile vtile--forest">
+            <span class="vtile__chip"><img src="/src/assets/logos/fanakafinance.png" alt="Fanaka Finance" /></span>
+            <p class="vtile__desc">Financial solutions for cooperative MSMEs and their members.</p>
+          </div>
+          <div class="vtile vtile--ink">
+            <span class="vtile__chip"><img src="/src/assets/logos/coopprofiler.png" alt="CoopProfiler" /></span>
+            <p class="vtile__desc">Data, monitoring and resilience-measurement platform for cooperatives.</p>
+          </div>
+          <div class="vtile vtile--ochre">
+            <span class="vtile__chip"><img src="/src/assets/logos/splendorerp.png" alt="Splendor ERP" /></span>
+            <p class="vtile__desc">Cloud-based enterprise resource planning for cooperative businesses.</p>
+          </div>
+          <div class="vtile vtile--maroon">
+            <span class="vtile__chip"><img src="/src/assets/logos/sokoniplace.png" alt="Sokoni Place" /></span>
+            <p class="vtile__desc">A marketplace platform connecting cooperatives to buyers.</p>
+          </div>
+          <div class="vtile vtile--forest vtile--wide">
+            <span class="vtile__chip"><img src="/src/assets/logos/cooptree.png" alt="CoopTree" /></span>
+            <p class="vtile__desc">TUI's green business initiative, including the Plant-A-CoopTree campaign.</p>
+          </div>
+          <div class="vtile vtile--navy">
+            <span class="vtile__chip"><img src="/src/assets/logos/thecooperator.png" alt="theCooperator News" /></span>
+            <p class="vtile__desc">TUI's cooperative-focused media platform.</p>
+          </div>
+          <div class="vtile vtile--ink">
+            <span class="vtile__chip"><img src="/src/assets/logos/thinktank.png" alt="Uhuru Think Tank" /></span>
+            <p class="vtile__desc">Research, knowledge, dialogue and policy.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ VENTURES MARQUEE ============ -->
-    <section class="ventures" id="thinktank">
-      <p class="ventures__label">The TUI Ecosystem of Ventures</p>
-      <div class="ventures__row ventures__row--a">
-        <div class="ventures__track">
-          <span>Coop360 Network <i>Networking cooperatives to opportunity</i></span>
-          <span>SkillCoop <i>Technical training &amp; coaching</i></span>
-          <span>#NoExcuses <i>Youth leadership &amp; enterprise</i></span>
-          <span>Fanaka Finance <i>Financial solutions for cooperatives</i></span>
-          <span>CoopProfiler <i>Data &amp; resilience monitoring</i></span>
-          <span>Coop360 Network <i>Networking cooperatives to opportunity</i></span>
-          <span>SkillCoop <i>Technical training &amp; coaching</i></span>
-          <span>#NoExcuses <i>Youth leadership &amp; enterprise</i></span>
-          <span>Fanaka Finance <i>Financial solutions for cooperatives</i></span>
-          <span>CoopProfiler <i>Data &amp; resilience monitoring</i></span>
+    <!-- ============ WHO WE WORK WITH ============ -->
+    <section class="network section" id="network">
+      <div class="section-frame">
+        <div class="section-head">
+          <div>
+            <p class="label"><i></i>Who We Work With</p>
+            <h2>Built for the whole cooperative ecosystem.</h2>
+          </div>
         </div>
-      </div>
-      <div class="ventures__row ventures__row--b">
-        <div class="ventures__track">
-          <span>Splendor ERP <i>Cloud business management</i></span>
-          <span>Sokoni Place <i>Cooperative marketplace</i></span>
-          <span>CoopTree <i>Green business initiative</i></span>
-          <span>theCooperator News <i>Cooperative media</i></span>
-          <span>Uhuru Think Tank <i>Research, knowledge &amp; policy</i></span>
-          <span>Splendor ERP <i>Cloud business management</i></span>
-          <span>Sokoni Place <i>Cooperative marketplace</i></span>
-          <span>CoopTree <i>Green business initiative</i></span>
-          <span>theCooperator News <i>Cooperative media</i></span>
-          <span>Uhuru Think Tank <i>Research, knowledge &amp; policy</i></span>
+        <div class="network__grid">
+          <div>
+            <div class="acc-group is-open" id="accGroup0">
+              <button class="acc-group__head" data-acc="0">
+                <h3>Grassroots</h3>
+                <span class="acc-group__icon"><i></i><i></i></span>
+              </button>
+              <div class="acc-group__body">
+                <div class="acc-group__tags">
+                  <span>Cooperatives</span><span>Village Savings &amp; Loan Associations</span><span>Youth</span><span>Collective Business Organisations</span>
+                </div>
+              </div>
+            </div>
+            <div class="acc-group" id="accGroup1">
+              <button class="acc-group__head" data-acc="1">
+                <h3>Institutional</h3>
+                <span class="acc-group__icon"><i></i><i></i></span>
+              </button>
+              <div class="acc-group__body">
+                <div class="acc-group__tags">
+                  <span>Government MDAs</span><span>Development Partners</span><span>Civil Society Organisations</span><span>Private Businesses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="network__visual">
+            <img src="/src/assets/images/tea-warm.jpg" alt="Cooperative members working together" />
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============ PEOPLE ============ -->
     <section class="people" id="people">
-      <div class="people__media">
-        <div class="people__clip">
-          <img src="/src/assets/images/tea-duotone.jpg" alt="Cooperative members working together" />
-        </div>
-      </div>
-      <div class="people__copy">
-        <p class="eyebrow eyebrow--dark">People First</p>
-        <h2>Collective effort,<br />moving forward together.</h2>
-        <p class="body-lg">
-          Real transformation is carried by people, not paperwork. Through <strong>#NoExcuses</strong>,
-          TUI trains, mentors and coaches young people into entrepreneurs and leaders — mindset, money and
-          civic responsibility — through youth camps and learning caravans led by cooperative practitioners.
-        </p>
+      <div class="section-frame">
+        <div class="people__circle"><img src="/src/assets/images/assembly-square.jpg" alt="TUI community" /></div>
+        <p class="people__pill">People First</p>
+        <h2>Collective effort, moving forward together.</h2>
+        <p>Real transformation is carried by people, not paperwork. Through <strong>#NoExcuses</strong>, TUI trains, mentors and coaches young people into entrepreneurs and leaders — mindset, money and civic responsibility — through youth camps and learning caravans led by cooperative practitioners.</p>
       </div>
     </section>
 
-    <!-- ============ WHO WE WORK WITH ============ -->
-    <section class="network" id="network">
-      <p class="eyebrow eyebrow--dark">Who We Work With</p>
-      <h2>Built for the whole<br />cooperative ecosystem.</h2>
-      <ul class="network__grid">
-        <li><span>01</span>Cooperatives</li>
-        <li><span>02</span>Village Savings &amp; Loan Associations</li>
-        <li><span>03</span>Youth</li>
-        <li><span>04</span>Collective Business Organisations</li>
-        <li><span>05</span>Government MDAs</li>
-        <li><span>06</span>Development Partners</li>
-        <li><span>07</span>Civil Society Organisations</li>
-        <li><span>08</span>Private Businesses</li>
-      </ul>
+    <!-- ============ BY THE NUMBERS ============ -->
+    <section class="numbers section--tight">
+      <div class="section-frame">
+        <div class="section-head">
+          <div>
+            <p class="label"><i></i>By The Numbers</p>
+            <h2>TUI, in brief.</h2>
+          </div>
+        </div>
+        <div class="numbers__grid">
+          <div class="numbers__cell"><b>2011</b><span>Founded, as TUI began its work advancing the cooperative business model.</span></div>
+          <div class="numbers__cell"><b>2013</b><span>Registered as a company limited by guarantee, in June.</span></div>
+          <div class="numbers__cell"><b>04</b><span>Core work areas — Business Development, Financing, ICT Solutions, Think Tank.</span></div>
+          <div class="numbers__cell"><b>09</b><span>Connected ecosystem parts — from people to policy.</span></div>
+          <div class="numbers__cell"><b>10</b><span>Ventures &amp; platforms operating across the ecosystem.</span></div>
+          <div class="numbers__cell"><b>05</b><span>Core values guiding every partnership TUI enters into.</span></div>
+        </div>
+      </div>
     </section>
 
     <!-- ============ CLOSING ============ -->
     <section class="closing" id="engage">
-      <div class="closing__bg">
-        <img src="/src/assets/images/piki-wide-duotone.jpg" alt="" />
+      <div class="section-frame">
+        <div class="section-head">
+          <div>
+            <p class="label"><i></i>Let's Build</p>
+            <h2>An enterprising, prosperous, peaceful &amp; happy society.</h2>
+          </div>
+        </div>
+        <div class="closing__grid">
+          <a href="#work" class="ctile ctile--light magnetic">
+            <div class="ctile__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14L14 4M6 4h8v8"/></svg></div>
+            <div>
+              <h3>Explore Our Work</h3>
+              <p>See how Business Development, Financing, ICT Solutions and the Uhuru Think Tank fit together.</p>
+            </div>
+          </a>
+          <a href="#contact" class="ctile ctile--dark magnetic">
+            <img src="/src/assets/images/piki-warm.jpg" alt="" />
+            <div class="ctile__scrim"></div>
+            <div class="ctile__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14L14 4M6 4h8v8"/></svg></div>
+            <div>
+              <h3>Partner With TUI</h3>
+              <p id="contact">For partnerships and enquiries, reach The Uhuru Institute for Social Development through its official channels.</p>
+            </div>
+          </a>
+        </div>
       </div>
-      <p class="eyebrow eyebrow--light">Let's Build</p>
-      <h2 class="closing__headline">An enterprising, prosperous,<br /><em>peaceful &amp; happy</em> society.</h2>
-      <p class="closing__sub">Partner with TUI to grow the cooperative economy — through business development, finance, technology and knowledge.</p>
-      <div class="closing__actions">
-        <a href="#work" class="btn btn--light magnetic"><span>Explore Our Work</span></a>
-        <a href="#contact" class="btn btn--outline magnetic"><span>Start a Conversation</span></a>
-      </div>
-      <p class="closing__note" id="contact">For partnerships and enquiries, reach The Uhuru Institute for Social Development through its official channels.</p>
     </section>
 
   </main>
@@ -315,21 +315,20 @@
   <footer class="site-footer">
     <div class="site-footer__top">
       <div class="site-footer__brand">
-        <span class="nav-mark__chip"><img src="/src/assets/images/logo.png" alt="TUI logo" /></span>
+        <span class="nav-mark"><img src="/src/assets/images/logo.png" alt="TUI logo" style="height:26px" /></span>
         <p>Accelerating inclusive, locally led socio-economic development by advancing the cooperative business model.</p>
       </div>
       <div class="site-footer__col">
         <h4>Explore</h4>
+        <a href="#work">What We Do</a>
         <a href="#ecosystem">The Ecosystem</a>
-        <a href="#work">Business Development</a>
-        <a href="#work">Financing</a>
-        <a href="#work">ICT Solutions</a>
-        <a href="#thinktank">Uhuru Think Tank</a>
+        <a href="#ventures">Ventures</a>
+        <a href="#network">Who We Work With</a>
       </div>
       <div class="site-footer__col">
         <h4>Organisation</h4>
-        <a href="#idea">Vision &amp; Mission</a>
-        <a href="#network">Who We Work With</a>
+        <a href="#hero">Vision &amp; Mission</a>
+        <a href="#people">People</a>
         <a href="#engage">Contact</a>
       </div>
       <div class="site-footer__col site-footer__values">
@@ -337,6 +336,7 @@
         <p>Resolve · Trust · Diligence · Accountability · Innovativeness</p>
       </div>
     </div>
+    <div class="site-footer__word">UHURU</div>
     <div class="site-footer__bottom">
       <p>&copy; 2026 The Uhuru Institute for Social Development (TUI).</p>
       <p>Registered as a company limited by guarantee, June 2013 · Uganda</p>
