@@ -168,8 +168,8 @@ h1, h2, h3 {
 }
 
 .hero__word {
-  position: absolute; z-index: 1; left: clamp(-10px, -1vw, 0px); bottom: clamp(-30px, -3vw, -10px);
-  font-size: clamp(90px, 15vw, 260px); font-weight: 700; letter-spacing: -.03em; line-height: .8;
+  position: absolute; z-index: 1; left: clamp(-10px, -1vw, 0px); bottom: clamp(16px, 3vh, 40px);
+  font-size: clamp(80px, 13vw, 220px); font-weight: 700; letter-spacing: -.03em; line-height: 1;
   color: var(--paper); opacity: .96; pointer-events: none; user-select: none;
 }
 
