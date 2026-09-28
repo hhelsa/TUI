@@ -3,6 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
+import bizdevImg from "./assets/images/bizdev-team.jpg";
+import networkImg from "./assets/images/network-team.jpg";
+import peopleImg from "./assets/images/people-team.jpg";
+import seedlingsImg from "./assets/images/seedlings.jpg";
+import farmingImg from "./assets/images/farming.jpg";
+import officeImg from "./assets/images/office.jpg";
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* ------------------------------------------------------------------
@@ -81,35 +88,57 @@ gsap.timeline({ delay: .2 })
   .from(".hero__word", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=.5");
 
 /* ------------------------------------------------------------------
-   Hero feature card — cycles through sections with shifting content
+   Hero cards — cycle through sections with shifting content
+   (images imported above so Vite fingerprints them correctly in prod)
    ------------------------------------------------------------------ */
-const heroFeatureStates = [
-  { img: "/src/assets/images/bizdev-team.jpg", label: "What We Do", desc: "Business development, finance, technology and policy — one ecosystem.", href: "#work" },
-  { img: "/src/assets/images/network-team.jpg", label: "Who We Work With", desc: "Cooperatives, youth, institutions and partners.", href: "#network" },
-  { img: "/src/assets/images/people-team.jpg", label: "People First", desc: "Real transformation, carried by real people.", href: "#people" },
-];
-const heroFeature = document.getElementById("heroFeature");
-const heroFeatureImg = document.getElementById("heroFeatureImg");
-const heroFeatureLabel = document.getElementById("heroFeatureLabel");
-const heroFeatureDesc = document.getElementById("heroFeatureDesc");
-
-if (heroFeature) {
+function startCardRotation({ link, img, label, desc }, states, intervalMs, startDelayMs = 0) {
+  if (!link) return;
   let stateIndex = 0;
-  setInterval(() => {
-    stateIndex = (stateIndex + 1) % heroFeatureStates.length;
-    const s = heroFeatureStates[stateIndex];
-    gsap.to([heroFeatureImg, heroFeatureLabel, heroFeatureDesc], {
-      opacity: 0, duration: .35, ease: "power2.in",
-      onComplete: () => {
-        heroFeatureImg.src = s.img;
-        heroFeatureLabel.textContent = s.label;
-        heroFeatureDesc.textContent = s.desc;
-        heroFeature.setAttribute("href", s.href);
-        gsap.to([heroFeatureImg, heroFeatureLabel, heroFeatureDesc], { opacity: 1, duration: .5, ease: "power2.out" });
-      },
-    });
-  }, 4200);
+  const apply = (s, animate) => {
+    const targets = [img, label, desc].filter(Boolean);
+    const show = () => {
+      img.src = s.img;
+      if (label) label.textContent = s.label;
+      if (desc) desc.textContent = s.desc;
+      link.setAttribute("href", s.href);
+      if (animate) gsap.to(targets, { opacity: 1, duration: .5, ease: "power2.out" });
+    };
+    if (animate) {
+      gsap.to(targets, { opacity: 0, duration: .35, ease: "power2.in", onComplete: show });
+    } else {
+      show();
+    }
+  };
+  setTimeout(() => {
+    setInterval(() => {
+      stateIndex = (stateIndex + 1) % states.length;
+      apply(states[stateIndex], true);
+    }, intervalMs);
+  }, startDelayMs);
 }
+
+const heroFeatureStates = [
+  { img: bizdevImg, label: "What We Do", desc: "Business development, finance, technology and policy — one ecosystem.", href: "#work" },
+  { img: networkImg, label: "Who We Work With", desc: "Cooperatives, youth, institutions and partners.", href: "#network" },
+  { img: peopleImg, label: "People First", desc: "Real transformation, carried by real people.", href: "#people" },
+];
+startCardRotation({
+  link: document.getElementById("heroFeature"),
+  img: document.getElementById("heroFeatureImg"),
+  label: document.getElementById("heroFeatureLabel"),
+  desc: document.getElementById("heroFeatureDesc"),
+}, heroFeatureStates, 4200);
+
+const heroPhotoStates = [
+  { img: seedlingsImg, label: "Growing Green", href: "#ventures" },
+  { img: farmingImg, label: "In The Field", href: "#wwd-financing" },
+  { img: officeImg, label: "Digital Tools", href: "#wwd-ict" },
+];
+startCardRotation({
+  link: document.getElementById("heroPhotoCard"),
+  img: document.getElementById("heroPhotoCardImg"),
+  label: document.getElementById("heroPhotoCardLabel"),
+}, heroPhotoStates, 3800, 1400);
 
 /* ------------------------------------------------------------------
    Generic reveal-up
