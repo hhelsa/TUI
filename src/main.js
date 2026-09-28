@@ -54,15 +54,62 @@ fullMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => 
 }));
 
 /* ------------------------------------------------------------------
-   Hero — gentle parallax + fade (no pin, matches reference restraint)
+   Smooth in-page anchor navigation (nav, footer, hero cards, CTAs)
+   ------------------------------------------------------------------ */
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    const id = a.getAttribute("href");
+    if (!id || id === "#" || id === "#top") return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -20, duration: 1.3 });
+  });
+});
+
+/* ------------------------------------------------------------------
+   Hero — gentle parallax + intro reveal (no pin, matches reference restraint)
    ------------------------------------------------------------------ */
 gsap.to("#heroImg", {
-  yPercent: 10,
+  yPercent: 8,
   ease: "none",
-  scrollTrigger: { trigger: ".hero__band", start: "top top", end: "bottom top", scrub: true },
+  scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
 });
-gsap.from("#heroStatement", { opacity: 0, y: 24, duration: 1, ease: "power3.out", delay: .15 });
-gsap.from(".hero__scroll-cue, .hero__meta", { opacity: 0, y: 16, duration: .9, ease: "power3.out", stagger: .1, delay: .5 });
+gsap.timeline({ delay: .2 })
+  .from(".hero__strapline, .hero__statement, .hero__cta", { opacity: 0, y: 20, duration: .9, ease: "power3.out", stagger: .12 })
+  .from(".hero__cards .hcard, .hero__cards .hpill", { opacity: 0, y: 18, duration: .7, ease: "power3.out", stagger: .07 }, "-=.6")
+  .from(".hero__word", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=.5");
+
+/* ------------------------------------------------------------------
+   Hero feature card — cycles through sections with shifting content
+   ------------------------------------------------------------------ */
+const heroFeatureStates = [
+  { img: "/src/assets/images/bizdev-team.jpg", label: "What We Do", desc: "Business development, finance, technology and policy — one ecosystem.", href: "#work" },
+  { img: "/src/assets/images/network-team.jpg", label: "Who We Work With", desc: "Cooperatives, youth, institutions and partners.", href: "#network" },
+  { img: "/src/assets/images/people-team.jpg", label: "People First", desc: "Real transformation, carried by real people.", href: "#people" },
+];
+const heroFeature = document.getElementById("heroFeature");
+const heroFeatureImg = document.getElementById("heroFeatureImg");
+const heroFeatureLabel = document.getElementById("heroFeatureLabel");
+const heroFeatureDesc = document.getElementById("heroFeatureDesc");
+
+if (heroFeature) {
+  let stateIndex = 0;
+  setInterval(() => {
+    stateIndex = (stateIndex + 1) % heroFeatureStates.length;
+    const s = heroFeatureStates[stateIndex];
+    gsap.to([heroFeatureImg, heroFeatureLabel, heroFeatureDesc], {
+      opacity: 0, duration: .35, ease: "power2.in",
+      onComplete: () => {
+        heroFeatureImg.src = s.img;
+        heroFeatureLabel.textContent = s.label;
+        heroFeatureDesc.textContent = s.desc;
+        heroFeature.setAttribute("href", s.href);
+        gsap.to([heroFeatureImg, heroFeatureLabel, heroFeatureDesc], { opacity: 1, duration: .5, ease: "power2.out" });
+      },
+    });
+  }, 4200);
+}
 
 /* ------------------------------------------------------------------
    Generic reveal-up
@@ -84,7 +131,7 @@ gsap.utils.toArray(".vtile").forEach((el, i) => {
    Ecosystem — build + animate radial diagram
    ------------------------------------------------------------------ */
 const NODES = ["People", "Cooperatives", "Enterprise", "Finance", "Technology", "Knowledge", "Networks", "Policy", "Environment"];
-const NODE_COLORS = ["#ac031e", "#a9702f", "#1c2b3a", "#244a37"];
+const NODE_COLORS = ["#e71e25", "#a9702f", "#1c2b3a", "#244a37"];
 const diagramEl = document.getElementById("ecosystemDiagram");
 
 if (diagramEl) {
