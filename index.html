@@ -18,9 +18,9 @@
     <a href="#top" class="nav-mark">
       <img src="/src/assets/images/logo.png" alt="TUI logo" />
     </a>
-    <button class="nav-menu-btn" id="menuBtn">
-      <span>Menu</span>
-      <span class="burger"><span></span><span></span><span></span></span>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="fullMenu" aria-expanded="false">
+      <span class="nav-menu-btn__word">UHURU</span>
+      <span class="burger"><span></span><span></span></span>
     </button>
   </header>
 
@@ -45,43 +45,47 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
       <div class="hero__bg">
-        <img src="/src/assets/images/hero-full.jpg" alt="Cooperative transport riders on the road, Uganda" id="heroImg" />
+        <img src="/src/assets/images/hero-full.webp" alt="A farmer tending young crops in the field" id="heroImg" fetchpriority="high" decoding="async" />
         <div class="hero__scrim"></div>
       </div>
 
+      <div class="hero__rule" aria-hidden="true"></div>
+
       <div class="hero__manifesto">
-        <p class="hero__strapline">Generating Wealth Together</p>
         <p class="hero__statement" id="heroStatement">Africa is a wealthy giant. We are enabling her people, to cooperatively prosper.</p>
-        <a href="#engage" class="hero__cta magnetic"><span>Partner With TUI</span></a>
       </div>
 
       <div class="hero__cards" id="heroCards">
         <a href="#work" class="hcard hcard--feature" id="heroFeature">
-          <div class="hcard--feature__media">
-            <img src="/src/assets/images/bizdev-team.jpg" alt="" id="heroFeatureImg" />
+          <div class="hcard__media">
+            <img src="/src/assets/images/cards/bizdev-team.webp" alt="" id="heroFeatureImg" fetchpriority="high" decoding="async" />
           </div>
           <div class="hcard--feature__body">
             <div class="hcard--feature__top">
               <span id="heroFeatureLabel">What We Do</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M6 4h6v6"/></svg>
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h16M13 5l6 6-6 6"/></svg>
             </div>
-            <p id="heroFeatureDesc">Business development, finance, technology and policy — one ecosystem.</p>
+            <p id="heroFeatureDesc">Business development, finance, technology and policy — one connected ecosystem.</p>
           </div>
         </a>
 
         <div class="hero__pills">
-          <a href="#story" class="hpill magnetic">Our Story</a>
-          <a href="#engage" class="hpill magnetic">Contact</a>
+          <a href="#story" class="hpill">Our Story</a>
+          <a href="#engage" class="hpill">Contact</a>
         </div>
 
-        <a href="#ventures" class="hcard hcard--tile magnetic">
-          <svg class="hcard--tile__icon" width="30" height="26" viewBox="0 0 30 26" fill="none"><rect x="1" y="6" width="5" height="14" rx="2" fill="currentColor"/><rect x="12.5" y="1" width="5" height="24" rx="2" fill="currentColor"/><rect x="24" y="9" width="5" height="11" rx="2" fill="currentColor"/></svg>
-          <span>Ventures</span>
+        <a href="#ventures" class="hcard hcard--brand">
+          <span class="hcard--brand__mark">
+            <svg width="34" height="30" viewBox="0 0 30 26" fill="none" aria-hidden="true"><rect x="1" y="6" width="5" height="14" rx="2" fill="currentColor"/><rect x="12.5" y="1" width="5" height="24" rx="2" fill="currentColor"/><rect x="24" y="9" width="5" height="11" rx="2" fill="currentColor"/></svg>
+            <span>UHURU</span>
+          </span>
+          <span class="hcard--brand__label">Our Ventures</span>
         </a>
 
         <a href="#ventures" class="hcard hcard--photo" id="heroPhotoCard">
-          <img src="/src/assets/images/seedlings.jpg" alt="" id="heroPhotoCardImg" />
-          <div class="hcard--photo__scrim"></div>
+          <div class="hcard__media">
+            <img src="/src/assets/images/cards/seedlings.webp" alt="" id="heroPhotoCardImg" fetchpriority="high" decoding="async" />
+          </div>
           <span class="hcard--photo__label" id="heroPhotoCardLabel">Growing Green</span>
         </a>
       </div>
@@ -166,7 +170,7 @@
               <div class="wwd__panel-label"><b>Business Development</b><span>Training · Coaching · Networking</span></div>
             </div>
             <div class="wwd__panel" data-panel="1">
-              <img src="/src/assets/images/hero-full.jpg" alt="Piki Credit boda-boda transport cooperative" />
+              <img src="/src/assets/images/boda-riders.jpg" alt="Piki Credit boda-boda transport cooperative" loading="lazy" />
               <div class="wwd__panel-scrim"></div>
               <div class="wwd__panel-label"><b>Financing</b><span>Fanaka Finance</span></div>
             </div>
@@ -337,7 +341,7 @@
             </div>
           </a>
           <a href="mailto:uhuru@uhuruinstitute.org" class="ctile ctile--dark magnetic">
-            <img src="/src/assets/images/hero-full.jpg" alt="" />
+            <img src="/src/assets/images/boda-riders.jpg" alt="" loading="lazy" />
             <div class="ctile__scrim"></div>
             <div class="ctile__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14L14 4M6 4h8v8"/></svg></div>
             <div>

@@ -3,12 +3,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
-import bizdevImg from "./assets/images/bizdev-team.jpg";
-import networkImg from "./assets/images/network-team.jpg";
-import peopleImg from "./assets/images/people-team.jpg";
-import seedlingsImg from "./assets/images/seedlings.jpg";
-import farmingImg from "./assets/images/farming.jpg";
-import officeImg from "./assets/images/office.jpg";
+import bizdevImg from "./assets/images/cards/bizdev-team.webp";
+import networkImg from "./assets/images/cards/network-team.webp";
+import peopleImg from "./assets/images/cards/people-team.webp";
+import seedlingsImg from "./assets/images/cards/seedlings.webp";
+import farmingImg from "./assets/images/cards/farming.webp";
+import officeImg from "./assets/images/cards/office.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,12 +52,15 @@ ScrollTrigger.create({
 const menuBtn = document.getElementById("menuBtn");
 const fullMenu = document.getElementById("fullMenu");
 menuBtn.addEventListener("click", () => {
-  menuBtn.classList.toggle("is-open");
-  fullMenu.classList.toggle("is-open");
+  const open = !fullMenu.classList.contains("is-open");
+  menuBtn.classList.toggle("is-open", open);
+  fullMenu.classList.toggle("is-open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
 });
 fullMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
   menuBtn.classList.remove("is-open");
   fullMenu.classList.remove("is-open");
+  menuBtn.setAttribute("aria-expanded", "false");
 }));
 
 /* ------------------------------------------------------------------
@@ -82,43 +85,63 @@ gsap.to("#heroImg", {
   ease: "none",
   scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
 });
-gsap.timeline({ delay: .2 })
-  .from(".hero__strapline, .hero__statement, .hero__cta", { opacity: 0, y: 20, duration: .9, ease: "power3.out", stagger: .12 })
-  .from(".hero__cards .hcard, .hero__cards .hpill", { opacity: 0, y: 18, duration: .7, ease: "power3.out", stagger: .07 }, "-=.6")
-  .from(".hero__word", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=.5");
+gsap.timeline({ delay: .1 })
+  .from(".hero__statement", { opacity: 0, y: 14, duration: .8, ease: "power3.out" })
+  .from(".hero__word", { opacity: 0, y: 24, duration: .9, ease: "power3.out" }, "-=.6");
 
 /* ------------------------------------------------------------------
    Hero cards — cycle through sections with shifting content
    (images imported above so Vite fingerprints them correctly in prod)
    ------------------------------------------------------------------ */
+const preloaded = new Map();
+function preload(src) {
+  if (!preloaded.has(src)) {
+    const im = new Image();
+    im.decoding = "async";
+    im.src = src;
+    preloaded.set(src, im.decode ? im.decode().catch(() => {}) : Promise.resolve());
+  }
+  return preloaded.get(src);
+}
+
+// Two stacked <img> layers per card: the next image is decoded off-screen,
+// then crossfaded in, so a swap never shows a blank or half-loaded frame.
 function startCardRotation({ link, img, label, desc }, states, intervalMs, startDelayMs = 0) {
-  if (!link) return;
-  let stateIndex = 0;
-  const apply = (s, animate) => {
-    const targets = [img, label, desc].filter(Boolean);
-    const show = () => {
-      img.src = s.img;
-      if (label) label.textContent = s.label;
-      if (desc) desc.textContent = s.desc;
-      link.setAttribute("href", s.href);
-      if (animate) gsap.to(targets, { opacity: 1, duration: .5, ease: "power2.out" });
-    };
-    if (animate) {
-      gsap.to(targets, { opacity: 0, duration: .35, ease: "power2.in", onComplete: show });
-    } else {
-      show();
-    }
+  if (!link || !img) return;
+  states.forEach((st) => preload(st.img));
+  let front = img;
+  const back = img.cloneNode();
+  back.removeAttribute("id");
+  back.removeAttribute("fetchpriority");
+  back.classList.add("is-next");
+  img.after(back);
+  let behind = back;
+  let i = 0;
+
+  const advance = async () => {
+    i = (i + 1) % states.length;
+    const st = states[i];
+    await preload(st.img);
+    behind.src = st.img;
+    const text = [label, desc].filter(Boolean);
+    gsap.timeline()
+      .to(text, { opacity: 0, y: -4, duration: .25, ease: "power2.in" }, 0)
+      .to(behind, { opacity: 1, duration: .7, ease: "power2.inOut" }, 0)
+      .to(front, { opacity: 0, duration: .7, ease: "power2.inOut" }, 0)
+      .add(() => {
+        if (label) label.textContent = st.label;
+        if (desc) desc.textContent = st.desc;
+        link.setAttribute("href", st.href);
+      }, .25)
+      .to(text, { opacity: 1, y: 0, duration: .4, ease: "power2.out" }, .3);
+    [front, behind] = [behind, front];
   };
-  setTimeout(() => {
-    setInterval(() => {
-      stateIndex = (stateIndex + 1) % states.length;
-      apply(states[stateIndex], true);
-    }, intervalMs);
-  }, startDelayMs);
+
+  setTimeout(() => setInterval(advance, intervalMs), startDelayMs);
 }
 
 const heroFeatureStates = [
-  { img: bizdevImg, label: "What We Do", desc: "Business development, finance, technology and policy — one ecosystem.", href: "#work" },
+  { img: bizdevImg, label: "What We Do", desc: "Business development, finance, technology and policy — one connected ecosystem.", href: "#work" },
   { img: networkImg, label: "Who We Work With", desc: "Cooperatives, youth, institutions and partners.", href: "#network" },
   { img: peopleImg, label: "People First", desc: "Real transformation, carried by real people.", href: "#people" },
 ];
